@@ -1,4 +1,4 @@
 # 5G Network Slicing
-'''bash
+```bash
 sudo apt update
-'''
+```
