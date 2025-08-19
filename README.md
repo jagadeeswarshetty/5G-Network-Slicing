@@ -27,7 +27,11 @@ depending on the use case.
 ```bash
 sudo apt update
 ```
+
+### Registration Procedure
 <img src = "Registration.png" alt = " Registration procedure">
+
+### signalling 
 <img src = "signalling.png" alt = " Signalling flow graph">
 
 
