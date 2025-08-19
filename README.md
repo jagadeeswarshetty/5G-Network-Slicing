@@ -27,3 +27,5 @@ depending on the use case.
 ```bash
 sudo apt update
 ```
+
+<img src = "signalling.png" alt = " Signalling flow graph">
