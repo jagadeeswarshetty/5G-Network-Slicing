@@ -108,5 +108,112 @@ Each slice can be tailored with different performance characteristics such as **
 
 ## Commands
 
+
+
+
+---
+
+### System Preparation
 ```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y git curl wget gnupg ca-certificates make gcc g++ \
+  libsctp-dev lksctp-tools iproute2 iptables ip6tables gedit
+sudo snap install cmake --classic
+````
+
+---
+
+## 1. Install MongoDB 8.0
+
+```bash
+sudo apt install -y gnupg
+curl -fsSL https://pgp.mongodb.com/server-8.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/8.0 multiverse" \
+| sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
 sudo apt update
+sudo apt install -y mongodb-org
+sudo systemctl enable mongod
+sudo systemctl start mongod
+```
+
+---
+
+## 2. Install Open5GS
+
+```bash
+git clone https://github.com/open5gs/open5gs
+cd open5gs
+meson build --prefix=`pwd`/install
+ninja -C build
+ninja -C build install
+```
+
+---
+
+## 3. Install Open5GS WebUI
+
+```bash
+cd ..
+git clone https://github.com/open5gs/open5gs-webui
+cd open5gs-webui
+npm install
+npm run dev
+```
+
+WebUI runs on [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 4. Install UERANSIM
+
+```bash
+git clone https://github.com/aligungr/UERANSIM
+cd UERANSIM
+make
+```
+
+---
+
+## 5. Run Components
+
+```bash
+# Terminal 1 – Core Network
+cd open5gs/build
+sudo ./install/bin/open5gs-nrfd &
+sudo ./install/bin/open5gs-smfd &
+sudo ./install/bin/open5gs-amfd &
+sudo ./install/bin/open5gs-upfd &
+
+# Terminal 2 – WebUI
+cd open5gs-webui
+npm run dev
+
+# Terminal 3 – gNB
+cd UERANSIM/build
+./nr-gnb -c ../config/open5gs-gnb.yaml
+
+# Terminal 4 – UE
+./nr-ue -c ../config/open5gs-ue.yaml
+```
+
+---
+
+## 6. Network Slicing
+
+* Configure S-NSSAI in `smf.yaml` and `amf.yaml`
+* Register slices in WebUI (Subscriber → Slices)
+* Run multiple UEs with different slice profiles
+
+---
+
+## References
+
+* [Open5GS](https://github.com/open5gs/open5gs)
+* [UERANSIM](https://github.com/aligungr/UERANSIM)
+
+```
+
+---
+
+
+
