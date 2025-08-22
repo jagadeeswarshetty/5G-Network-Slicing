@@ -1,0 +1,117 @@
+logger:
+  file:
+    path: /home/klu/Desktop/open5gs/install/var/log/open5gs/nrf.log
+#  level: info   # fatal|error|warn|info(default)|debug|trace
+
+nrf:
+  sbi:
+    server:
+      - address: 127.0.0.10
+        port: 7777 # NRF's own server address
+        api_version: v1
+    client:
+      amf:
+        - uri: http://127.0.0.200:7777  # AMF URI for NRF to register with AMF
+      smf:
+        - uri: http://127.0.0.4:7777  # SMF URI for NRF to register with SMF
+  network_slice:
+    - slice_id: "embb"
+      sst: 1
+      sd: 010000
+    - slice_id: "Urllc"
+      sst: 2
+      sd: 020000
+    - slice_id: "mmtc"
+      sst: 3
+      sd: 030000
+    - slice_id: "Hdllc"
+      sst: 4
+      sd: 040000
+    - slice_id: "v2v"
+      sst: 5
+      sd: 050000
+    - slice_id: "iot"
+      sst: 6
+      sd: 060000
+
+################################################################################
+# SBI Server
+################################################################################
+#  o Bind to the address on the eth0 and advertise as open5gs-nrf.svc.local
+#  sbi:
+#    server:
+#      - dev:eth0
+#        advertise: open5gs-nrf.svc.local
+#
+#  o Specify a custom port number 7777 while binding to the given address
+#  sbi:
+#    server:
+#      - address: nrf.localdomain
+#        port: 7777
+#
+#  o Bind to 127.0.0.10 and advertise as open5gs-nrf.svc.local
+#  sbi:
+#    server:
+#      - address: 127.0.0.10
+#        port: 7777
+#        advertise: open5gs-nrf.svc.local
+#
+#  o Bind to port 7777 but advertise with a different port number 8888
+#  sbi:
+#    server:
+#      - address: 127.0.0.10
+#        port: 7777
+#        advertise: open5gs-nrf.svc.local:8888
+#
+################################################################################
+# HTTPS scheme with TLS
+################################################################################
+#  o Set as default if not individually set
+#  default:
+#    tls:
+#      server:
+#        scheme: https
+#        private_key: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.key
+#        cert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.crt
+#      client:
+#        scheme: https
+#        cacert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/ca.crt
+#  sbi:
+#    server:
+#      - address: nrf.localdomain
+#
+#  o Enable SSL key logging for Wireshark
+#    - This configuration allows capturing SSL/TLS session keys
+#      for debugging or analysis purposes using Wireshark.
+#  default:
+#    tls:
+#      server:
+#        scheme: https
+#        private_key: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.key
+#        cert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.crt
+#        sslkeylogfile: /home/klu/Desktop/open5gs/install/var/log/open5gs/tls/nrf-server-sslkeylog.log
+#      client:
+#        scheme: https
+#        cacert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/ca.crt
+#        client_sslkeylogfile: /home/klu/Desktop/open5gs/install/var/log/open5gs/tls/nrf-client-sslkeylog.log
+#  sbi:
+#    server:
+#      - address: nrf.localdomain
+#
+#  o Add client TLS verification
+#  default:
+#    tls:
+#      server:
+#        scheme: https
+#        private_key: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.key
+#        cert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.crt
+#        verify_client: true
+#        verify_client_cacert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/ca.crt
+#      client:
+#        scheme: https
+#        cacert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/ca.crt
+#        client_private_key: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.key
+#        client_cert: /home/klu/Desktop/open5gs/install/etc/open5gs/tls/nrf.crt
+#  sbi:
+#    server:
+#      - address: nrf.localdomain
