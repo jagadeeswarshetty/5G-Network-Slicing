@@ -196,13 +196,7 @@ cd UERANSIM/build
 ./nr-ue -c ../config/open5gs-ue.yaml
 ```
 
----
 
-## 6. Network Slicing
-
-* Configure S-NSSAI in `smf.yaml` and `amf.yaml`
-* Register slices in WebUI (Subscriber → Slices)
-* Run multiple UEs with different slice profiles
 
 ---
 
