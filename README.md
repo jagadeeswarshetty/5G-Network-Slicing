@@ -58,11 +58,51 @@ Each slice can be tailored with different performance characteristics such as **
 
 <img src="Registration.png" alt="Registration procedure" width="600">
 
+## 🔹 Steps Explained
+1. **UE → RAN** : UE sends an initial registration request.  
+2. **RAN → AMF1** : Registration signaling is forwarded to AMF1.  
+3. **AMF1 → UDM** : AMF1 queries UDM to fetch subscription data.  
+4. **UDM → AMF1** : UDM responds with UE subscription and slice info.  
+5. **AMF1 → NSSF** : Requests slice selection information.  
+6. **NSSF → AMF1** : Provides slice selection details.  
+7. **AMF1 → AMF2 (Optional)** : If the slice requires a different AMF, reallocation takes place.  
+8. **AMF1/AMF2 Coordination** :  
+   - **8a**: AMF1 identifies slice mismatch.  
+   - **8b**: Redirects UE context to AMF2.  
+   - **8c**: RAN updates its mapping to new AMF.  
+   - **8d**: UE continues signaling via AMF2.  
+9. **UE ← RAN** : Final registration response is delivered back to UE.
+
 ---
 
 ## Signalling Flow
 
 <img src="signalling.png" alt="Signalling flow graph" width="600">
+
+
+## 🔹 Procedure
+1. **Registration Request (UE → RAN → AMF):**  
+   - UE sends registration request including:  
+     - **Requested NSSAI** (Network Slice Selection Assistance Information).  
+     - **Network slicing indication**.  
+
+2. **Slice Information Exchange (AMF ↔ NSSF):**  
+   - **AMF → NSSF:** Slice Information Request.  
+   - **NSSF → AMF:** Slice Information Response (allowed slice options).  
+
+3. **Slice Selection Request/Response:**  
+   - **AMF → NSSF:** Sends UE capabilities for slice selection.  
+   - **NSSF → AMF:** Returns **Service-specific schema** for slice allocation.  
+
+4. **Authentication & Security:**  
+   - AMF interacts with **UDM** and **AUSF** to authenticate the UE and secure the connection.  
+
+5. **Registration Accept (AMF → UE):**  
+   - Final message includes:  
+     - Allowed NSSAI  
+     - Configured NSSAI  
+     - Network Slicing Indication  
+     - NSSAI Inclusion Mode  
 
 ---
 
