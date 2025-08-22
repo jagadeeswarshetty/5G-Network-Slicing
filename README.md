@@ -106,7 +106,7 @@ Each slice can be tailored with different performance characteristics such as **
 
 ---
 
-## Example Command
+## Commands
 
 ```bash
 sudo apt update
