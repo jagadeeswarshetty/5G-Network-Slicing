@@ -28,7 +28,7 @@
 
 ## 5G Network Slicing
 
-<img src="NetworkSlicing.png" alt="Network Slicing" width="600">
+<img src="Network Slicing.png" alt="Network Slicing" width="600">
 
 Network slicing enables the creation of isolated, end-to-end logical networks that can run concurrently over a shared 5G infrastructure.  
 Each slice can be tailored with different performance characteristics such as **latency, bandwidth, and reliability** depending on the use case.
