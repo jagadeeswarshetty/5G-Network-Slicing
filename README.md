@@ -1,4 +1,22 @@
-# 5G Network Slicing
+# 5G Core Network
+
+<img src = "5GC.png" alt = " 5G Core(Standalone Mode) ">
+
+--> AMF (Access & Mobility Management Function): Handles registration, mobility, access authentication, and connection management.
+
+--> SMF (Session Management Function): Manages PDU sessions, allocates UE IP, and controls user-plane traffic steering at UPF.
+
+--> UPF (User Plane Function): Forwards and routes user data packets, manages QoS, and acts as mobility anchor.
+
+--> UDM (Unified Data Management): Stores and manages subscriber data and authentication credentials.
+
+--> AUSF (Authentication Server Function): Authenticates devices and users in coordination with UDM.
+
+--> PCF (Policy Control Function): Enforces policies for QoS, slicing, roaming, mobility, and billing.
+
+
+
+## 5G Network Slicing
 
 Network slicing enables the creation of isolated, end-to-end networks that can run 
 concurrently over a common 5G infrastructure”. These slices can be customized with 
