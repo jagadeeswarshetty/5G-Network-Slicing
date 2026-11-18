@@ -26,7 +26,7 @@ services:
       - COMPONENT_NAME=webui
       - DB_URI=mongodb://${MONGO_IP}/open5gs
     volumes:
-      - ../../webui:/mnt/webui
+      - ../webui:/mnt/webui
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "9999/tcp"
@@ -43,8 +43,8 @@ services:
     environment:
       - COMPONENT_NAME=nrf
     volumes:
-      - ../../nrf:/mnt/nrf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../nrf:/mnt/nrf
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -61,8 +61,8 @@ services:
     environment:
       - COMPONENT_NAME=scp
     volumes:
-      - ../../scp:/mnt/scp
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../scp:/mnt/scp
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -80,8 +80,8 @@ services:
     environment:
       - COMPONENT_NAME=ausf
     volumes:
-      - ../../ausf:/mnt/ausf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../ausf:/mnt/ausf
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -101,8 +101,8 @@ services:
       - COMPONENT_NAME=udr
       - DB_URI=mongodb://${MONGO_IP}/open5gs
     volumes:
-      - ../../udr:/mnt/udr
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../udr:/mnt/udr
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -120,8 +120,8 @@ services:
     environment:
       - COMPONENT_NAME=udm
     volumes:
-      - ../../udm:/mnt/udm
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../udm:/mnt/udm
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -142,7 +142,7 @@ services:
       - DEPLOY_MODE=5G
     volumes:
       - ./smf:/mnt/smf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "3868/tcp"
@@ -170,7 +170,7 @@ services:
       - DEPLOY_MODE=5G
     volumes:
       - ./smf:/mnt/smf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "3868/tcp"
@@ -198,7 +198,7 @@ services:
       - DEPLOY_MODE=5G
     volumes:
       - ./smf:/mnt/smf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "3868/tcp"
@@ -225,7 +225,7 @@ services:
       - COMPONENT_NAME=upf
     volumes:
       - ./upf:/mnt/upf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "2152/udp"
@@ -252,7 +252,7 @@ services:
       - COMPONENT_NAME=upf2
     volumes:
       - ./upf:/mnt/upf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "2152/udp"
@@ -279,7 +279,7 @@ services:
       - COMPONENT_NAME=upf3
     volumes:
       - ./upf:/mnt/upf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "2152/udp"
@@ -310,7 +310,7 @@ services:
       - COMPONENT_NAME=amf
     volumes:
       - ./amf:/mnt/amf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "38412/sctp"
@@ -332,8 +332,8 @@ services:
       - COMPONENT_NAME=pcf
       - DB_URI=mongodb://${MONGO_IP}/open5gs
     volumes:
-      - ../../pcf:/mnt/pcf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../pcf:/mnt/pcf
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -354,8 +354,8 @@ services:
       - COMPONENT_NAME=bsf
       - DB_URI=mongodb://${MONGO_IP}/open5gs
     volumes:
-      - ../../bsf:/mnt/bsf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../bsf:/mnt/bsf
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -375,7 +375,7 @@ services:
       - COMPONENT_NAME=nssf
     volumes:
       - ./nssf:/mnt/nssf
-      - ../../log:/open5gs/install/var/log/open5gs
+      - ../log:/open5gs/install/var/log/open5gs
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "7777/tcp"
@@ -383,13 +383,13 @@ services:
       default:
         ipv4_address: ${NSSF_IP}
   metrics:
-    build: ../../metrics
+    build: ../metrics
     image: docker_metrics
     container_name: metrics
     env_file:
       - .custom_env
     volumes:
-      - ../../metrics:/mnt/metrics
+      - ../metrics:/mnt/metrics
       - /etc/localtime:/etc/localtime:ro
     expose:
       - "${METRICS_BIND_PORT}/tcp"
@@ -405,8 +405,8 @@ services:
       - .custom_env
     volumes:
       - grafana_data:/var/lib/grafana
-      - ../../grafana/:/etc/grafana/provisioning/
-      - ../../grafana:/mnt/grafana
+      - ../grafana/:/etc/grafana/provisioning/
+      - ../grafana:/mnt/grafana
       - /etc/localtime:/etc/localtime:ro
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}

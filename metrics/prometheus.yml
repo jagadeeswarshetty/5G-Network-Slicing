@@ -1,0 +1,31 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+  external_labels:
+    monitor: 'open5gs-monitor'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'amf'
+    static_configs:
+      - targets: ['172.22.0.10:9091']
+
+  - job_name: 'smf'
+    static_configs:
+      - targets: ['172.22.0.7:9091']
+
+  - job_name: 'upf'
+    static_configs:
+      - targets: ['172.22.0.8:9091']
+
+  - job_name: 'pcf'
+    static_configs:
+      - targets: ['172.22.0.27:9091']
+
+  - job_name: 'ml-rca-exporter'
+    static_configs:
+      - targets: ['172.22.0.1:9106']
