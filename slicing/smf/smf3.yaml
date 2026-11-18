@@ -1,0 +1,61 @@
+logger:
+    file:
+      path: /open5gs/install/var/log/open5gs/smf3.log
+sbi:
+    server:
+      no_tls: true
+    client:
+      no_tls: true
+global:
+  max:
+    ue: MAX_NUM_UE
+  parameter:
+      no_ipv4v6_local_addr_in_packet_filter: true
+smf:
+    info:
+      - s_nssai:
+          - sst: 3
+            sd: 000003
+            dnn:
+              - mmtc
+    sbi:
+      server:
+        - address: SMF3_IP
+          port: 7777
+      client:
+        nrf:
+          - uri: http://NRF_IP:7777
+        scp:
+          - uri: http://SCP_IP:7777
+    gtpc:
+      server:
+        - address: SMF3_IP
+    gtpu:
+      server:
+        - address: SMF3_IP
+    pfcp:
+      server:
+        - address: SMF3_IP
+      client:
+        upf:
+          - address: UPF3_IP
+            dnn: mmtc
+    session:
+      - subnet: UE_IPV4_MMTC_APN_SUBNET
+        gateway: UE_IPV4_MMTC_APN_GATEWAY_IP
+        dnn: mmtc
+      - subnet: 2001:230:dafe::/48
+        gateway: 2001:230:dafe::1
+        dnn: mmtc
+    dns:
+      - SMF_DNS1
+      - SMF_DNS2
+      - 2001:4860:4860::8888
+      - 2001:4860:4860::8844
+    p-cscf:
+      - PCSCF_IP
+    mtu: 1450
+    metrics:
+      server:
+        - address: SMF3_IP
+          port: 9091
